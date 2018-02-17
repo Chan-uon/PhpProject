@@ -6,11 +6,21 @@
 * @var string $class_name The name of the class.
 */
 function lazyAutoloader($class_name) {
-    // namespace prefix, ex Project\Class
-    $prefix ='MyProject';
+    lazyAutoloaderHelper($class_name, '/', 'MyProject');
+    lazyAutoloaderHelper($class_name, '/controllers/', 'MyProject');
+}
 
+/**
+* Function lazyAutoloaderHelper($class_name, $class_path).
+* Used to support autoloading of classes from different directories
+*
+* @var string $class_name The name of the class.
+* @var string $class_path The path to append to base directory.
+* @var string $prefix The namespace prefix.
+*/
+function lazyAutoloaderHelper($class_name, $class_path, $prefix){
     // base directory, ex /usr/project/
-    $base_dir = __DIR__ . '/';
+    $base_dir = __DIR__ . $class_path;
 
     // check if the class uses the namespace prefix
     $len = strlen($prefix);
