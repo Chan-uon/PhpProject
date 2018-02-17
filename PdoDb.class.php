@@ -1,27 +1,28 @@
 <?php
 /**
-* Singleton Database Class for PDO connection
+* Singleton Database Class for PDO connection.
 */
-class PdoDb{
+namespace MyProject;
+use \PDO;
 
+class PdoDb{
     /**
-    * Class attribute instance
+    * Class attribute $instance.
     * @var null
     */
     private static $instance = null;
 
     /**
-    * Class Constructor
-    * @return void
+    * Class Constructor.
     */
     private function __construct() {
     }
 
     /**
-    * Method getInstance()
-    * returns a singleton instance for PDO database connection
+    * Method getInstance().
+    * returns a singleton instance for PDO database connection.
     *
-    * @return obj $instance PDO instance
+    * @return obj $instance PDO instance.
     */
     public static function getInstance(){
         if(self::$instance == null){
