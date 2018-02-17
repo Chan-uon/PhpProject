@@ -1,5 +1,6 @@
 <?php
     require_once('lazy_autoloader.php');
+    require_once('routes.php');
     use \MyProject\PdoDb;
     use \MyProject\Route;
 ?>
@@ -16,11 +17,12 @@
     $stmt = $pdo->query('SELECT * FROM r');
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    Route::add("index.php", function() {});
+    Route::get("index.php", function() {});
     ?>
         <pre>
         <?php
             print_r($result);
+            echo $_GET['url'];
         ?>
         </pre>
     </body>

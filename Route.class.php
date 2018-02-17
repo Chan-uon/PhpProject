@@ -18,15 +18,19 @@ class Route{
     }
 
     /**
-    * Method add($uri, $call_back).
-    * Add an uri and a callback function to $routes.
+    * Method get($url, $call_back).
+    * Add an url and a callback function to $routes.
+    * Invoke the callback for the specified uri
     *
-    * @param string $uri
+    * @param string $url
     * @param function $call_back The callback function.
     * @return void
     */
-    public static function add($uri, $call_back){
-        self::$routes[$uri] = $call_back;
+    public static function get($url, $call_back){
+        self::$routes[$url] = $call_back;
+        if($_GET['url'] == $url){
+                self::$routes[$url]->__invoke();
+            }
     }
 }
 ?>
