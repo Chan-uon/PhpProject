@@ -16,8 +16,6 @@
     $pdo = PdoDb::getInstance();
     $stmt = $pdo->query('SELECT * FROM r');
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    Route::get("index.php", function() {});
     ?>
         <pre>
         <?php

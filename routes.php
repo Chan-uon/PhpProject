@@ -2,8 +2,11 @@
 use \MyProject\Route;
 use \MyProject\ControllerHome;
 
-Route::get("index.php", function (){
+//Add the routes.
+Route::add("index.php", function (){
     return ControllerHome::show();
 });
 
+//Get the route and invokes its function
+Route::get();
 ?>
