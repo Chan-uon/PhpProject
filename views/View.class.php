@@ -2,7 +2,7 @@
 /**
 * Base View Class.
 */
-namespace MyPhpProject;
+namespace MyProject;
 
 class View{
 
