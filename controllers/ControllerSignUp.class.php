@@ -1,10 +1,10 @@
 <?php
 /**
-* Controller for homepage
+* Controller for sign up
 */
 namespace MyProject;
 
-class ControllerHome extends Controller {
+class ControllerSignUp extends Controller {
 
     public static function show($view_name){
         self::view($view_name);
