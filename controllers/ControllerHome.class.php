@@ -6,6 +6,10 @@ namespace MyProject;
 
 class ControllerHome extends Controller {
 
+    public function __construct() {
+        parent::__construct();
+    }
+
     /**
     * Method show($view_name).
     * Invoke the method view.
@@ -16,8 +20,8 @@ class ControllerHome extends Controller {
     * @return function view($view_name, $data)
     *   The method to be invoked.
     */
-    public static function show($view_name){
-        self::view($view_name);
+    public function show($view_name){
+        $this->view($view_name);
     }
 }
 ?>

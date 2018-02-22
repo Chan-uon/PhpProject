@@ -1,15 +1,15 @@
 <?php
 use \MyProject\Route;
-use \MyProject\ControllerHome;
-use \MyProject\ControllerSignUp;
-
+use \MyProject\ControllerFactory;
 //Add the routes.
 Route::add("index.php", function (){
-    ControllerHome::show("index.php");
+    $controller = ControllerFactory::create("index.php");
+    $controller->show("index.php");
 });
 
 Route::add("sign_up.php", function (){
-    ControllerSignUp::show("sign_up.php");
+    $controller = ControllerFactory::create("sign_up.php");
+    $controller->show("sign_up.php");
 });
 
 //Get the route and invokes its function
