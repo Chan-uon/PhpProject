@@ -6,22 +6,25 @@ namespace MyProject;
 
 class Controller{
 
-    /**
+    protected $view_name;
+
+   /**
     * Class Constructor.
     */
-    public function __construct() {
+    public function __construct($view) {
+        $this->view_name = $view;
     }
 
     /**
-    * Method view($view_name, $data = []).
-    * Include the view using the $view_name.
+    * Method getView($view, $data = []).
+    * Include the view using the $view.
     *
-    * @param string $view_name The name of the view.
+    * @param string $view The name of the view.
     * @param array $data The data being passed to the view.
     * @return void
     */
-    public function view($view_name, $data = []) {
-        require_once("./views/{$view_name}");
+    public function getView($view, $data = []) {
+        require_once("./views/{$view}");
     }
 }
 ?>

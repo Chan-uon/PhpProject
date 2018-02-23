@@ -5,23 +5,24 @@
 namespace MyProject;
 
 class ControllerSignUp extends Controller {
-
-    public function __construct() {
-        parent::__construct();
+   /**
+    * Class Constructor.
+    */
+    public function __construct($view) {
+        parent::__construct($view);
     }
 
     /**
-    * Method show($view_name).
-    * Invoke the method view.
+    * Method show().
+    * Invoke the method getView.
     * May perform logical operations and pass
-    * data to method view before invoking it.
+    * data to method getView before invoking it.
     *
-    * @param string $view_name The name of the view.
-    * @return function view($view_name, $data)
+    * @return function getView($view_name, $data)
     *   The method to be invoked.
     */
-    public function show($view_name){
-        $this->view($view_name);
+    public function show(){
+        $this->getView($this->view_name);
     }
 }
 ?>

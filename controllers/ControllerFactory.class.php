@@ -5,13 +5,13 @@ use \MyProject\ControllerSignUp;
 
 Class ControllerFactory {
 
-    public static function create($controller_name) {
-        switch($controller_name){
+    public static function create($controller) {
+        switch($controller){
             case "index.php":
-                return new ControllerHome();
+                return new ControllerHome($controller);
                 break;
             case "sign_up.php":
-                return new ControllerSignUp();
+                return new ControllerSignUp($controller);
                 break;
         }
     }
