@@ -5,7 +5,8 @@
 *
 * @var string $class_name The name of the class.
 */
-function lazyAutoloader($class_name) {
+function lazyAutoloader($class_name)
+{
     lazyAutoloaderHelper($class_name, '/', 'MyProject');
     lazyAutoloaderHelper($class_name, '/controllers/', 'MyProject');
 }
@@ -18,7 +19,8 @@ function lazyAutoloader($class_name) {
 * @var string $class_path The path to append to base directory.
 * @var string $prefix The namespace prefix.
 */
-function lazyAutoloaderHelper($class_name, $class_path, $prefix){
+function lazyAutoloaderHelper($class_name, $class_path, $prefix)
+{
     // base directory, ex /usr/project/
     $base_dir = __DIR__ . $class_path;
 
@@ -41,4 +43,3 @@ function lazyAutoloaderHelper($class_name, $class_path, $prefix){
 }
 
 spl_autoload_register('lazyAutoloader');
-?>

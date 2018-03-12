@@ -4,7 +4,8 @@
 */
 namespace MyProject;
 
-class Route{
+class Route
+{
     /**
     * Class attribute $routes.
     * @var array
@@ -14,7 +15,8 @@ class Route{
     /**
     * Class Constructor.
     */
-    private function __construct() {
+    private function __construct()
+    {
     }
 
     /**
@@ -25,7 +27,8 @@ class Route{
     * @param function $call_back The callback function.
     * @return void
     */
-    public static function add($url, $call_back){
+    public static function add($url, $call_back)
+    {
         self::$routes[$url] = $call_back;
     }
 
@@ -36,9 +39,10 @@ class Route{
     *
     * @return void
     */
-    public static function get(){
+    public static function get()
+    {
         $url = $_GET['url'];
-        if(array_key_exists($url, self::$routes)){
+        if (array_key_exists($url, self::$routes)) {
                 self::$routes[$url]->__invoke();
             }
         else {
@@ -46,4 +50,3 @@ class Route{
         }
     }
 }
-?>

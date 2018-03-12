@@ -3,9 +3,11 @@
 * Singleton Database Class for PDO connection.
 */
 namespace MyProject;
+
 use \PDO;
 
-class PdoDb{
+class PdoDb
+{
     /**
     * Class attribute $instance.
     * @var null
@@ -15,7 +17,8 @@ class PdoDb{
     /**
     * Class Constructor.
     */
-    private function __construct() {
+    private function __construct()
+    {
     }
 
     /**
@@ -24,14 +27,17 @@ class PdoDb{
     *
     * @return obj $instance PDO instance.
     */
-    public static function getInstance(){
-        if(self::$instance == null){
+    public static function getInstance()
+    {
+        if (self::$instance == null) {
             $db = parse_ini_file('db.ini');
             $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
-            self::$instance = new PDO('mysql:host='.$db['host'].';dbname='.$db["database"],
-                                    $db['username'], $db['password'], $pdo_options);
+            self::$instance = new PDO('mysql:host='.$db['host'].
+                                    ';dbname='.$db["database"],
+                                    $db['username'],
+                                    $db['password'],
+                                    $pdo_options);
         }
         return self::$instance;
     }
 }
-?>

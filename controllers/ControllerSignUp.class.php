@@ -4,11 +4,13 @@
 */
 namespace MyProject;
 
-class ControllerSignUp extends Controller {
+class ControllerSignUp extends Controller
+{
    /**
     * Class Constructor.
     */
-    public function __construct($view) {
+    public function __construct($view)
+    {
         parent::__construct($view);
     }
 
@@ -21,8 +23,8 @@ class ControllerSignUp extends Controller {
     * @return function getView($view_name, $data)
     *   The method to be invoked.
     */
-    public function show(){
+    public function show()
+    {
         $this->getView($this->view_name);
     }
 }
-?>
