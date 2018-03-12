@@ -8,21 +8,49 @@
     <a href="index.php">Home</a>
     <br />
     <form>
-        <label for="fname">First name:</label>
-        <input type="text" id="fname" value="first name"><br />
-        
-        <label for="lname">Last name:</label>
-        <input type="text" id="lname" value="last name"><br />
-        
-        <label for="username">Username:</label>
-        <input type="text" id="username" value="username"><br />
-        
-        <label for="userpw">Password:</label>
-        <input type="password" id="userpw" value=""><br />
-        
-        <label for="userconfirm">Password confirm:</label>
-        <input type="password" id="userconfirm"value=""><br />
-        <input type="submit" value="submit">
+        <table>
+            <tr>
+                <td>
+                    <label for="fname">First name</label>
+                </td>
+                <td>
+                    <input type="text" id="fname" value="first name">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="lname">Last name</label>
+                </td>
+                <td>
+                    <input type="text" id="lname" value="last name">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="username">Username</label>
+                </td>
+                <td>
+                    <input type="text" id="username" value="username">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="userpw">Password</label>
+                </td>
+                <td>
+                    <input type="password" id="userpw" value="">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="userconfirm">Password confirm</label>
+                </td>
+                <td>
+                    <input type="password" id="userconfirm" value="">
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit">
     </form>
     </body>
 </html>
