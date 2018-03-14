@@ -9,6 +9,7 @@ function lazyAutoloader($class_name)
 {
     lazyAutoloaderHelper($class_name, '/', 'MyProject');
     lazyAutoloaderHelper($class_name, '/controllers/', 'MyProject');
+    lazyAutoloaderHelper($class_name, '/model/', 'MyProject');
 }
 
 /**
