@@ -4,7 +4,8 @@
 */
 namespace MyProject;
 
-use Exception;
+use \Exception;
+use \PDO;
 
 class User extends Model
 {
@@ -12,17 +13,25 @@ class User extends Model
     * Class attribute $data.
     * Stores column name and its respective data.
     *
-    * @var array
+    * @var array $data
     */
     private $data = array();//id, name, password
 
     /**
-    * Class attribute $table.
+    * Class static attribute $table.
     * Stores table name.
     *
-    * @var string
+    * @var string $table
     */
-    private $table = 'users';
+    private static $table = 'users';
+
+    /**
+    * Class static attribute $col_names.
+    * Stores column's names.
+    *
+    * @var string $col_names
+    */
+    private static $col_names = null;
 
    /**
     * Class Constructor.
@@ -91,8 +100,8 @@ class User extends Model
         $pdo = PdoDb::getInstance();
 
         $sql  = "SELECT * ";
-        $sql .= "FROM " . $this->table . " ";
-        $sql .= "LIMIT 0;";
+        $sql .= "FROM " . self::$table . " ";
+        $sql .= "LIMIT 0";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
@@ -104,5 +113,30 @@ class User extends Model
         //unset any data column that are inserted/updated automatically
         unset($this->data['created_at']);
         unset($this->data['modified_at']);
+
+        //store column names only
+        self::$col_names = array_keys($this->data);
+    }
+
+    /**
+    * Method static read($user_id)
+    * Access database and return all the data
+    * for the user whose id is equal to $user_id
+    *
+    * @param int $user_id The user's id.
+    * @return array The user's information.
+    */
+    public static function read($user_id)
+    {
+        $pdo = PdoDb::getInstance();
+
+        $sql  = "SELECT * ";
+        $sql .= "FROM " . self::$table . " ";
+        $sql .= "WHERE " . self::$col_names[0] . " = ?";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array($user_id));
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+
     }
 }
