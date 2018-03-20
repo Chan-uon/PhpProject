@@ -26,13 +26,18 @@
         echo "<br/>";
         $result = User::read(1);
         if ($result) {
-            echo $result['id'] . "this is the id";
-            echo $result['name'] . "this is the name";
-            echo $result['password'] . "this is the passwors";
+            echo $result['id'] . ": this is the id ";
+            echo "<br/>";
+            echo $result['name'] . ": this is the name ";
+            echo "<br/>";
+            echo $result['password'] . ": this is the password";
         } else {
             echo "empty";
         }
         echo "<br/>";
+
+        User::delete(1);
+        echo "deleting user id 1";
     ?>
     <a href="sign_up.php">sign up</a>
     </body>

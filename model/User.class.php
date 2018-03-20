@@ -137,6 +137,26 @@ class User extends Model
         $stmt = $pdo->prepare($sql);
         $stmt->execute(array($user_id));
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
+    /**
+    * Method static delete($user_id)
+    * Access database and delete all the data
+    * for the user whose id is equal to $user_id
+    *
+    * @param int $user_id The user's id.
+    * @return void
+    */
+    public static function delete($user_id)
+    {
+        $pdo = PdoDb::getInstance();
+
+        $sql  = "DELETE ";
+        $sql .= "FROM " . self::$table . " ";
+        $sql .= "WHERE " . self::$col_names[0] . " = ?";
+        $sql .= "LIMIT 1";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array($user_id));
     }
 }
