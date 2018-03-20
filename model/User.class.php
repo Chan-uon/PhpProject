@@ -8,7 +8,20 @@ use Exception;
 
 class User extends Model
 {
-    private $data;//id, name, password
+    /**
+    * Class attribute $data.
+    * Stores column name and its respective data.
+    *
+    * @var array
+    */
+    private $data = array();//id, name, password
+
+    /**
+    * Class attribute $table.
+    * Stores table name.
+    *
+    * @var string
+    */
     private $table = 'users';
 
    /**
@@ -18,15 +31,7 @@ class User extends Model
     */
     public function __construct()
     {
-        $db = PdoDb::getInstance();
-        //only get column names
-        $result = $db->prepare('SELECT * FROM ' . $this->table . ' LIMIT 0');
-        $result->execute();
-        //do not include timestamp
-        for ($i = 0; $i < $result->columnCount() - 1; $i++) {
-            $col = $result->getColumnMeta($i);
-            $this->data[$col['name']] = null;
-        }
+        $this->getColumns();
     }
 
     /**
@@ -69,5 +74,33 @@ class User extends Model
             echo  "<br />" . $e;
         }
       
+    }
+
+    /**
+    * Method getColumns()
+    * Access database in order to retrieve all column names
+    * add them to $data.
+    *
+    * @return void
+    */
+    private function getColumns()
+    {
+        //get column names and place it into $data
+        $pdo = PdoDb::getInstance();
+
+        $sql  = "SELECT * ";
+        $sql .= "FROM " . $this->table . " ";
+        $sql .= "LIMIT 0;";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+
+        for ($i = 0; $i < $stmt->columnCount() ; $i++) {
+           $column = $stmt->getColumnMeta($i);
+           $this->data[$column['name']] = null;
+        }
+        //unset any data column that are inserted/updated automatically
+        unset($this->data['created_at']);
+        unset($this->data['modified_at']);
     }
 }
