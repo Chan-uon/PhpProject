@@ -19,7 +19,7 @@
         echo 'user name is ' . $user->name;
         echo "<br/>";
         echo "this should cause an error";
-        $user->n;
+        $user->test;
         echo "this should cause an error";
         $user->b = "error";
     ?>

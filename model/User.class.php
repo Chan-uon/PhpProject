@@ -41,14 +41,15 @@ class User extends Model
     * @param string $varName The name of the attribute.
     * @return string|int|null The value of a specific attribute.
     */
-    public function __get($varName)
+    public function __get($var_name)
     {
         try {
-            if (!array_key_exists($varName, $this->data)) {
-                throw new Exception('Error: $user->' . $varName.' does not exist');
+            if (array_key_exists($var_name, $this->data)) {
+                return $this->data[$var_name];
             }
             else {
-                return $this->data[$varName];
+                 throw new Exception('Error __get: ' . __CLASS__ .
+                        ' class does not have attribute {' . $var_name . '}');
             }
         } catch (Exception $e) {
             echo  "<br />" . $e;
@@ -61,14 +62,15 @@ class User extends Model
     *
     * @return void
     */
-    public function __set($varName,$value)
+    public function __set($var_name,$value)
     {
         try {
-            if (!array_key_exists($varName, $this->data)) {
-                throw new Exception('Error: $user->' . $varName.' does not exist');
+            if (array_key_exists($var_name, $this->data)) {
+                $this->data[$var_name] = $value;
             }
             else {
-                $this->data[$varName] = $value;
+                throw new Exception('Error __set: ' . __CLASS__ .
+                        ' class does not have attribute {' . $var_name . '}');
             }
         } catch (Exception $e) {
             echo  "<br />" . $e;
