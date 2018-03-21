@@ -119,6 +119,47 @@ class User extends Model
     }
 
     /**
+    * Method save()
+    * Insert a new record into the database.
+    *
+    * @return void
+    */
+    public function save()
+    {
+        $pdo = PdoDb::getInstance();
+        $count = count(self::$col_names);
+
+        //build the query string to insert data into the required columns
+        $sql  = "INSERT INTO " . self::$table . " ";
+        $sql .= "(";
+        for ($i = 0; $i < $count; $i++) {
+            if ($i === 0) {//skip id since it auto increments
+                continue;
+            } else if ($i === $count - 1) {
+                $sql .= self::$col_names[$i] . " ";//no comma for last column
+            } else {
+                $sql .= self::$col_names[$i] . ", ";//comma after each column
+            }
+        }
+        $sql .= ")";
+        $sql .= "VALUES (";
+        for ($i = 0; $i < $count; $i++) {
+           if ($i === $count - 2) {// ? for each column except id
+                $sql .= "?";//no comma for last column
+                break; //exit loop
+            } else {
+                $sql .= "?, ";//comma after each column
+            }
+        }
+        $sql .= ")";
+
+        $stmt = $pdo->prepare($sql);
+        unset($this->data['id']);//remove id from $data array
+        $stmt->execute(array_values($this->data));//pass index array with values
+    }
+
+
+    /**
     * Method update()
     * Update database information for a given
     * user id.
@@ -133,7 +174,7 @@ class User extends Model
         $sql  = "UPDATE " . self::$table . " ";
         $sql .= "SET " ;
         for ($i = 0; $i < $count; $i++) {
-            if ($i === 0) {//skip id
+            if ($i === 0) {//skip id since we don't want to update its value
                 continue;
             } else if ($i === $count - 1) {
                 $sql .= self::$col_names[$i] . " = ? ";//no comma for last column

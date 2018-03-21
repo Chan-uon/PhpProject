@@ -15,9 +15,9 @@
         $user = new User();
         print_r($user);
         echo "<br/>";
-        $user->id = 1;
-        $user->name = "mrWorker";
-        $user->password = "newpass";
+        //$user->id = 1;
+        $user->name = "secondWorker";
+        $user->password = "somepass";
         echo 'user name is ' . $user->name;
         echo "<br/>";
         echo "this should cause an error";
@@ -37,9 +37,9 @@
             echo "empty";
         }
         echo "<br/>";
-
-        $user->update();
-        echo "updated";
+        $user->save();
+        //$user->update();
+        //echo "updated";
         //User::delete(1);
         //echo "deleting user id 1";
     ?>
