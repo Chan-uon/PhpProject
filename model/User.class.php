@@ -119,6 +119,41 @@ class User extends Model
     }
 
     /**
+    * Method update()
+    * Update database information for a given
+    * user id.
+    *
+    * @return void
+    */
+    public function update()
+    {
+        $pdo = PdoDb::getInstance();
+        $count = count(self::$col_names);
+        //build the query string to update the required columns
+        $sql  = "UPDATE " . self::$table . " ";
+        $sql .= "SET " ;
+        for ($i = 0; $i < $count; $i++) {
+            if ($i === 0) {//skip id
+                continue;
+            } else if ($i === $count - 1) {
+                $sql .= self::$col_names[$i] . " = ? ";//no comma for last column
+            } else {
+                $sql .= self::$col_names[$i] . " = ?, ";//comma after each column
+            }
+        }
+        $sql .= "WHERE " . self::$col_names[0] . " = ?";//user id
+
+        $stmt = $pdo->prepare($sql);
+        $user_id = $this->data['id'];
+        unset($this->data['id']);//remove id from $data array
+        $param = array_values($this->data);//extract all values from $data
+        array_push($param, $user_id); //add id to end to use in where clause
+
+        $stmt->execute($param);
+    }
+
+
+    /**
     * Method static read($user_id)
     * Access database and return all the data
     * for the user whose id is equal to $user_id

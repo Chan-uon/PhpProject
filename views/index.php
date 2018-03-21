@@ -15,7 +15,9 @@
         $user = new User();
         print_r($user);
         echo "<br/>";
+        $user->id = 1;
         $user->name = "mrWorker";
+        $user->password = "newpass";
         echo 'user name is ' . $user->name;
         echo "<br/>";
         echo "this should cause an error";
@@ -36,8 +38,10 @@
         }
         echo "<br/>";
 
-        User::delete(1);
-        echo "deleting user id 1";
+        $user->update();
+        echo "updated";
+        //User::delete(1);
+        //echo "deleting user id 1";
     ?>
     <a href="sign_up.php">sign up</a>
     </body>
