@@ -13,12 +13,13 @@
 
     <?php
         $user = new User();
+        echo "<br/>";
         print_r($user);
         echo "<br/>";
         //$user->id = 1;
-        $user->name = "secondWorker";
-        $user->password = "somepass";
-        echo 'user name is ' . $user->name;
+        //$user->name = "secondWorker";
+       // $user->password = "somepass";
+        //echo 'user name is ' . $user->name;
         echo "<br/>";
         echo "this should cause an error";
         //$user->test;
@@ -37,7 +38,7 @@
             echo "empty";
         }
         echo "<br/>";
-        $user->save();
+        //$user->save();
         //$user->update();
         //echo "updated";
         //User::delete(1);
